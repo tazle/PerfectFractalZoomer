@@ -6,6 +6,55 @@ using System.Threading.Tasks;
 
 namespace PerfectFractalZoomer.Fractal.MandelbrotLib
 {
+    public interface MandelbrotView
+    {
+        float pixelAt(int x, int y);
+        void stepTime();
+    }
+
+    public class StaticMandelbrotView : MandelbrotView
+    {
+        private readonly Mandelbrot engine;
+        private readonly float rCenter;
+        private readonly float iCenter;
+        private readonly float viewWidth;
+        private readonly int screenWidth;
+        private readonly int screenHeight;
+
+        // derivative values
+        private readonly float viewLeft;
+        private readonly float viewTop;
+        private readonly float rStep;
+        private readonly float iStep;
+
+        public StaticMandelbrotView(Mandelbrot engine, float rCenter, float iCenter, float viewWidth, int screenWidth, int screenHeight)
+        {
+            this.engine = engine;
+            this.rCenter = rCenter;
+            this.iCenter = iCenter;
+            this.viewWidth = viewWidth;
+            this.screenHeight = screenHeight;
+            this.screenWidth = screenWidth;
+
+
+            this.rStep = viewWidth / screenWidth;
+            this.iStep = -rStep;
+
+            this.viewLeft = rCenter - viewWidth/2;
+            this.viewTop = iCenter - (iStep * screenHeight / 2);
+        }
+
+        public float pixelAt(int x, int y)
+        {
+            return engine.valueAt(viewLeft + x * rStep, viewTop + y * iStep);
+        }
+
+        public void stepTime()
+        {
+            // Do nothing
+        }
+    }
+
     public interface Mandelbrot
     {
         /**
