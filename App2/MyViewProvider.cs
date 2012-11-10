@@ -32,6 +32,8 @@ using Windows.Graphics.Display;
 using Windows.System;
 using Windows.UI.Core;
 
+using PerfectFractalZoomer.Fractal.MandelbrotLib;
+
 namespace MyFirstDirect2D
 {
     /// <summary>
@@ -185,22 +187,37 @@ namespace MyFirstDirect2D
                     return;
                 }
 
+                int WIDTH = 1280;
+                int HEIGHT = 800;
+                Mandelbrot engine = new BasicMandelbrot(64);
+                MandelbrotView view = new StaticMandelbrotView(engine, -.875f, 0f, 3f, WIDTH, HEIGHT);
+
                 // Set the Direct2D drawing target.
                 d2dContext.Target = d2dTarget;
+
+                int[] data = new int[WIDTH * HEIGHT];
+                for (int y = 0; y < HEIGHT; y++)
+                {
+                    for (int x = 0; x < WIDTH; x++)
+                    {
+                        float val = view.pixelAt(x, y);
+                        int intVal = (int)(255 * val);
+                        data[y * WIDTH + x] = 0 | intVal << 16 | intVal << 8 | intVal;
+                    }
+                }
+
+
+                DrawingSize size = new DrawingSize(WIDTH, HEIGHT);
+                PixelFormat format = new PixelFormat(Format.B8G8R8A8_UNorm, SharpDX.Direct2D1.AlphaMode.Ignore);
+                BitmapProperties props = new BitmapProperties(format);
+                RenderTarget target = d2dContext;
+                Bitmap buf = Bitmap.New<int>(target, size, data, props);
 
                 // Clear the target and draw some geometry with the brushes we created. Note that rectangles are
                 // created specifying (start-x, start-y, end-x, end-y) coordinates; in XNA we used
                 // (start-x, start-y, width, height).
                 d2dContext.BeginDraw();
-                d2dContext.Clear(Color.CornflowerBlue);
-                d2dContext.FillRectangle(new RectangleF(50, 50, 450, 200), solidBrush);
-                d2dContext.FillRoundedRectangle(new RoundedRect()
-                {
-                    Rect = new RectangleF(50, 250, 450, 400),
-                    RadiusX = 10,
-                    RadiusY = 10
-                }, linearGradientBrush);
-                d2dContext.FillEllipse(new Ellipse(new DrawingPointF(250, 525), 100, 100), radialGradientBrush);
+                d2dContext.DrawBitmap(buf, 1, BitmapInterpolationMode.Linear);
                 d2dContext.EndDraw();
 
                 // Present the current buffer to the screen.

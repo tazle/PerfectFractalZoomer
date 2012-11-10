@@ -100,6 +100,31 @@ namespace GridUI.DataModel
                     Color.White,
                     group2));
             this.AllGroups.Add(group2);
+
+            var fractals = new DataGroup("Fractals",
+        "Group Title: Fractals",
+        "Assets/DarkGray.png",
+        "Group Description: Fractals!");
+            fractals.Items.Add(new StaticMandelbrotDrawer("Static Mandelbrot",
+                    "Item Title: Static Mandelbrot",
+                    "Assets/LightGray.png",
+                    Color.White,
+                    -.875f,
+                    0f,
+                    3f,
+                    16,
+                    fractals));
+            fractals.Items.Add(new StaticMandelbrotDrawer("Static Mandelbrot 2",
+        "Item Title: Static Mandelbrot",
+        "Assets/LightGray.png",
+        Color.White,
+        -1.5f,
+        0.2f,
+        0.5f,
+        128,
+        fractals));
+
+            this.AllGroups.Add(fractals);
         }
     }
 }

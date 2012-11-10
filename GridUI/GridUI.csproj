@@ -108,6 +108,7 @@
     <Compile Include="DataModel\DataItem.cs" />
     <Compile Include="DataModel\Drawers\LineDrawer.cs" />
     <Compile Include="DataModel\Drawers\PixelDrawer.cs" />
+    <Compile Include="DataModel\Drawers\StaticMandelbrotDrawer.cs" />
     <Compile Include="GroupedItemsPage.xaml.cs">
       <DependentUpon>GroupedItemsPage.xaml</DependentUpon>
     </Compile>
@@ -180,6 +181,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\Fractals.csproj">
+      <Project>{0ad20a48-8247-4c1f-911e-7540c140053f}</Project>
+      <Name>Fractals</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CommonDX\CommonDX.csproj">
       <Project>{45cd76a3-e21e-47a3-8bfd-9a1241aadb9d}</Project>
       <Name>CommonDX</Name>
