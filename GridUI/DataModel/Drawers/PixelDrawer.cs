@@ -18,7 +18,7 @@ namespace GridUI.DataModel.Drawers
         private DeviceContext context;
         private Brush pixelBrush;
         private Brush dimmingBrush;
-
+        private DrawingSize size;
 
         public PixelDrawer(String uniqueId, String title, String imagePath, Color color, DataGroup group)
             : base(uniqueId, title, imagePath, group)
@@ -28,6 +28,8 @@ namespace GridUI.DataModel.Drawers
 
         public override void initContent(SurfaceImageSourceTarget target, DrawingSize pixelSize)
         {
+            this.size = pixelSize;
+
             context = target.DeviceManager.ContextDirect2D;
             pixelBrush = new SolidColorBrush(context, color);
             dimmingBrush = new SolidColorBrush(context, new Color(0, 0, 0, 10));
@@ -35,13 +37,13 @@ namespace GridUI.DataModel.Drawers
 
         public override void drawContent(TargetBase target)
         {
-            int x = random.Next(0, context.PixelSize.Width);
-            int y = random.Next(0, context.PixelSize.Height);
+            int x = random.Next(0, size.Width);
+            int y = random.Next(0, size.Height);
 
             context.BeginDraw();
 
             // Dim
-            context.FillRectangle(new RectangleF(0, 0, context.PixelSize.Width, context.PixelSize.Width), dimmingBrush);
+            context.FillRectangle(new RectangleF(0, 0, size.Width, size.Height), dimmingBrush);
             context.FillRectangle(new RectangleF(x,y,x+2,y+2), pixelBrush);
 
             context.EndDraw();
