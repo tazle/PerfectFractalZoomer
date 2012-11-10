@@ -135,6 +135,12 @@
       <HintPath>..\packages\SharpDX.DXGI.2.4.0\lib\netcore45\SharpDX.DXGI.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\Fractals.csproj">
+      <Project>{0ad20a48-8247-4c1f-911e-7540c140053f}</Project>
+      <Name>Fractals</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
