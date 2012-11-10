@@ -26,13 +26,14 @@ namespace GridUI.DataModel.Drawers
         public override void drawContent(TargetBase target)
         {
             DeviceContext context = target.DeviceManager.ContextDirect2D;
+            Brush brush = new SolidColorBrush(context, color);
             context.BeginDraw();
             context.Clear(Color.Black);
 
             // Add something http://writeablebitmapex.codeplex.com
             for (int i = 0; i < context.PixelSize.Height; i += 4)
             {
-                context.DrawLine(new DrawingPointF(0,i), new DrawingPointF(context.PixelSize.Width, i), new SolidColorBrush(context, color));
+                context.DrawLine(new DrawingPointF(0,i), new DrawingPointF(context.PixelSize.Width, i), brush);
             }
             context.EndDraw();
         }
