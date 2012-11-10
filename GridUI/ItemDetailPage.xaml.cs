@@ -43,6 +43,9 @@ namespace GridUI
 
             // Show fps counter
             Application.Current.DebugSettings.EnableFrameRateCounter = true;
+
+            this.Loaded += load;
+            this.Unloaded += unload;
         }
 
         /// <summary>
@@ -64,30 +67,7 @@ namespace GridUI
 
             item = DataSource.GetItem((String)navigationParameter);
             this.DefaultViewModel["Group"] = item.Group;
-
-
-            // Create bitmap and set it to black
-            ImageBrush d2dBrush = new ImageBrush();
-            d2dRectangle.Fill = d2dBrush;
-
-            DeviceManager deviceManager = new DeviceManager();
-
-            d2dTarget = new SurfaceImageSourceTarget((int)d2dContainer.Width, (int)d2dContainer.Height);
-            d2dBrush.ImageSource = d2dTarget.ImageSource;
-            d2dTarget.OnRender += item.drawContent;
-
-            deviceManager.OnInitialize += d2dTarget.Initialize;
-            deviceManager.Initialize(DisplayProperties.LogicalDpi);
-
-            CompositionTarget.Rendering += CompositionTarget_Rendering;
-
         }
-
-        void CompositionTarget_Rendering(object sender, object e)
-        {
-            d2dTarget.RenderAll();
-        }
-
 
         /// <summary>
         /// Preserves state associated with this page in case the application is suspended or the
@@ -98,6 +78,35 @@ namespace GridUI
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
             pageState["SelectedItem"] = item.UniqueId;
+        }
+
+        private void load(Object sender, RoutedEventArgs e)
+        {
+            // Create bitmap and set it to black
+            ImageBrush d2dBrush = new ImageBrush();
+            d2dRectangle.Fill = d2dBrush;
+
+            DeviceManager deviceManager = new DeviceManager();
+
+            d2dTarget = new SurfaceImageSourceTarget((int)d2dContainer.Width, (int)d2dContainer.Height);
+            d2dTarget.OnRender += item.drawContent;
+            d2dBrush.ImageSource = d2dTarget.ImageSource;
+
+            deviceManager.OnInitialize += d2dTarget.Initialize;
+            deviceManager.Initialize(DisplayProperties.LogicalDpi);
+
+            CompositionTarget.Rendering += CompositionTarget_Rendering;
+        }
+
+        private void unload(Object sender, RoutedEventArgs e)
+        {
+            d2dTarget.Dispose();
+            CompositionTarget.Rendering -= CompositionTarget_Rendering;
+        }
+
+        void CompositionTarget_Rendering(object sender, object e)
+        {
+            d2dTarget.RenderAll();
         }
     }
 }
