@@ -14,10 +14,13 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using Windows.Graphics.Display;
+
 // Bitmap
-using Windows.UI.Xaml.Media.Imaging;
-// Colors
-using Windows.UI;
+using CommonDX;
+using SharpDX;
+using SharpDX.IO;
+
 
 
 // The Item Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234232
@@ -31,8 +34,8 @@ namespace GridUI
     public sealed partial class ItemDetailPage : GridUI.Common.LayoutAwarePage
     {
         // Writable bitmap
-        private WriteableBitmap bmp;
         private DataItem item;
+        private SurfaceImageSourceTarget d2dTarget;
 
         public ItemDetailPage()
         {
@@ -53,24 +56,38 @@ namespace GridUI
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-
-            // Create bitmap and set it to black
-            bmp = BitmapFactory.New((int)ViewPortContainer.Width, (int)ViewPortContainer.Height);
-            bmp.Clear(Colors.Black);
-            ImageViewport.Source = bmp;
-
             // Allow saved page state to override the initial item to display
             if (pageState != null && pageState.ContainsKey("SelectedItem"))
             {
                 navigationParameter = pageState["SelectedItem"];
             }
 
-            // TODO: Create an appropriate data model for your problem domain to replace the sample data
             item = DataSource.GetItem((String)navigationParameter);
             this.DefaultViewModel["Group"] = item.Group;
-            
-            item.drawContent(bmp);
+
+
+            // Create bitmap and set it to black
+            ImageBrush d2dBrush = new ImageBrush();
+            d2dRectangle.Fill = d2dBrush;
+
+            DeviceManager deviceManager = new DeviceManager();
+
+            d2dTarget = new SurfaceImageSourceTarget(100, 100);
+            d2dBrush.ImageSource = d2dTarget.ImageSource;
+            d2dTarget.OnRender += item.drawContent;
+
+            deviceManager.OnInitialize += d2dTarget.Initialize;
+            deviceManager.Initialize(DisplayProperties.LogicalDpi);
+
+            CompositionTarget.Rendering += CompositionTarget_Rendering;
+
         }
+
+        void CompositionTarget_Rendering(object sender, object e)
+        {
+            d2dTarget.RenderAll();
+        }
+
 
         /// <summary>
         /// Preserves state associated with this page in case the application is suspended or the

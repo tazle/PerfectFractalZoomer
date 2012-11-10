@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 // Bitmap
-using Windows.UI.Xaml.Media.Imaging;
-// Colors
-using Windows.UI;
+using SharpDX.Direct2D1;
+using CommonDX;
+using SharpDX;
 
 namespace GridUI.DataModel.Drawers
 {
     class PixelDrawer : DataItem
     {
-        private Color color = Colors.White;
+        private Color color = new Color(255);
 
         public PixelDrawer(String uniqueId, String title, String imagePath, Color color, DataGroup group)
             : base(uniqueId, title, imagePath, group)
@@ -21,13 +21,14 @@ namespace GridUI.DataModel.Drawers
             this.color = color;
         }
 
-        public override void drawContent(Windows.UI.Xaml.Media.Imaging.WriteableBitmap bmp)
+        public override void drawContent(TargetBase target)
         {
             // Add something http://writeablebitmapex.codeplex.com
             //   # #
             //   # #
             // #     #
             //  #####
+            /*context.DrawLine(new );
             bmp.SetPixel(10, 12, color);
             bmp.SetPixel(11, 12, color);
 
@@ -40,7 +41,7 @@ namespace GridUI.DataModel.Drawers
             bmp.SetPixel(13, 12, color);
             bmp.SetPixel(13, 13, color);
             bmp.SetPixel(13, 14, color);
-            bmp.SetPixel(13, 15, color);
+            bmp.SetPixel(13, 15, color);*/
         }
     }
 }

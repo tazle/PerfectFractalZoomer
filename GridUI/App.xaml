@@ -18,7 +18,7 @@
 
             <!-- Application-specific resources -->
 
-            <x:String x:Key="AppName">GridUI</x:String>
+            <x:String x:Key="AppName">Perfect Fractal Zoomer</x:String>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -11,7 +11,7 @@ using System.Collections.Specialized;
 
 using GridUI.DataModel.Drawers;
 // Colors
-using Windows.UI;
+using SharpDX;
 
 
 // The data model defined by this file serves as a representative example of a strongly-typed
@@ -71,12 +71,12 @@ namespace GridUI.DataModel
             group1.Items.Add(new PixelDrawer("Group-1-Item-1",
                     "Item Title: White pixels",
                     "Assets/LightGray.png",
-                    Colors.White,
+                    Color.White,
                     group1));
             group1.Items.Add(new PixelDrawer("Group-1-Item-2",
                     "Item Title: Blue pixels",
                     "Assets/LightGray.png",
-                    Colors.Blue,
+                    Color.White,
                     group1));
             this.AllGroups.Add(group1);
 
@@ -87,17 +87,17 @@ namespace GridUI.DataModel
             group2.Items.Add(new LineDrawer("Group-2-Item-1",
                     "Item Title: White lines",
                     "Assets/LightGray.png",
-                    Colors.White,
+                    Color.White,
                     group2));
             group2.Items.Add(new LineDrawer("Group-2-Item-2",
                     "Item Title: Blue lines",
                     "Assets/LightGray.png",
-                    Colors.Blue,
+                    Color.White,
                     group2));
             group2.Items.Add(new LineDrawer("Group-2-Item-3",
                     "Item Title: Red lines",
                     "Assets/LightGray.png",
-                    Colors.Red,
+                    Color.White,
                     group2));
             this.AllGroups.Add(group2);
         }
