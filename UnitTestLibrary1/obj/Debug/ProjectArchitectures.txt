@@ -1,2 +1,0 @@
-C:\Users\tazle\Documents\softa\Perfect Fractal Zoomer\PerfectFractalZoomer\ClassLibrary1\Fractals.csproj;neutral
-C:\Users\tazle\Documents\softa\Perfect Fractal Zoomer\PerfectFractalZoomer\UnitTestLibrary1\FractalsTest.csproj;neutral

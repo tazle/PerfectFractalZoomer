@@ -9,8 +9,8 @@
     <ProjectGuid>{B7D0BF11-41C8-41B4-A1DB-62ED96363237}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UnitTestLibrary1</RootNamespace>
-    <AssemblyName>UnitTestLibrary1</AssemblyName>
+    <RootNamespace>FractalsTest</RootNamespace>
+    <AssemblyName>FractalsTest</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
