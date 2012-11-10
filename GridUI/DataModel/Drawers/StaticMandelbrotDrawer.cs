@@ -42,7 +42,8 @@ namespace GridUI.DataModel.Drawers
             int WIDTH = context.PixelSize.Width;
             int HEIGHT = context.PixelSize.Height;
             Mandelbrot engine = new BasicMandelbrot(iters);
-            MandelbrotView view = new StaticMandelbrotView(engine, rCenter, iCenter, width, WIDTH, HEIGHT);
+            Trajectory staticTrajectory = new StaticTrajectory(rCenter, iCenter, width);
+            MandelbrotView view = new TrajectoryMandelbrotView(engine, staticTrajectory, WIDTH, HEIGHT);
 
             int[] data = new int[WIDTH * HEIGHT];
             for (int y = 0; y < HEIGHT; y++)

@@ -12,36 +12,62 @@ namespace PerfectFractalZoomer.Fractal.MandelbrotLib
         void stepTime();
     }
 
-    public class StaticMandelbrotView : MandelbrotView
+    public interface Trajectory
+    {
+        float getRCenter();
+        float getICenter();
+        float getWidth();
+        void stepTime();
+    }
+
+    public class StaticTrajectory : Trajectory
+    {
+        private float rCenter;
+        private float iCenter;
+        private float width;
+        
+        public StaticTrajectory(float rCenter, float iCenter, float width) {
+            this.rCenter = rCenter;
+            this.iCenter = iCenter;
+            this.width = width;
+        }
+
+        public float getRCenter() { return rCenter; }
+        public float getICenter() { return iCenter; }
+        public float getWidth() { return width; }
+        public void stepTime() { }
+    }
+
+    public class TrajectoryMandelbrotView : MandelbrotView
     {
         private readonly Mandelbrot engine;
-        private readonly float rCenter;
-        private readonly float iCenter;
-        private readonly float viewWidth;
+        private readonly Trajectory trajectory;
         private readonly int screenWidth;
         private readonly int screenHeight;
 
         // derivative values
-        private readonly float viewLeft;
-        private readonly float viewTop;
-        private readonly float rStep;
-        private readonly float iStep;
+        private float viewLeft;
+        private float viewTop;
+        private float rStep;
+        private float iStep;
 
-        public StaticMandelbrotView(Mandelbrot engine, float rCenter, float iCenter, float viewWidth, int screenWidth, int screenHeight)
+        public TrajectoryMandelbrotView(Mandelbrot engine, Trajectory trajectory, int screenWidth, int screenHeight)
         {
             this.engine = engine;
-            this.rCenter = rCenter;
-            this.iCenter = iCenter;
-            this.viewWidth = viewWidth;
+            this.trajectory = trajectory;
             this.screenHeight = screenHeight;
             this.screenWidth = screenWidth;
 
+            updateState();
 
-            this.rStep = viewWidth / screenWidth;
+        }
+
+        private void updateState() {
+            this.rStep = trajectory.getWidth() / screenWidth;
             this.iStep = -rStep;
 
-            this.viewLeft = rCenter - viewWidth/2;
-            this.viewTop = iCenter - (iStep * screenHeight / 2);
+            this.viewLeft = trajectory.getRCenter() - trajectory.getWidth() / 2;
+            this.viewTop = trajectory.getICenter() - (iStep * screenHeight / 2);
         }
 
         public float pixelAt(int x, int y)
@@ -51,7 +77,8 @@ namespace PerfectFractalZoomer.Fractal.MandelbrotLib
 
         public void stepTime()
         {
-            // Do nothing
+            trajectory.stepTime();
+            this.updateState();
         }
     }
 
