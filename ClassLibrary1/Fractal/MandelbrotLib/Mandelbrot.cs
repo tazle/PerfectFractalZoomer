@@ -20,6 +20,26 @@ namespace PerfectFractalZoomer.Fractal.MandelbrotLib
         void stepTime();
     }
 
+    public class DynamicTrajectory : Trajectory
+    {
+
+        private Trajectory innerTrajectory;
+        private Func<Trajectory, Trajectory> updater;
+
+        public DynamicTrajectory(Trajectory initial, Func<Trajectory, Trajectory> updater)
+        {
+            this.innerTrajectory = initial;
+            this.updater = updater;
+        }
+
+        public float getRCenter() { return innerTrajectory.getRCenter(); }
+        public float getICenter() { return innerTrajectory.getICenter(); }
+        public float getWidth() { return innerTrajectory.getWidth(); }
+        public void stepTime() {
+            this.innerTrajectory = updater.Invoke(this.innerTrajectory);
+        }
+    }
+
     public class StaticTrajectory : Trajectory
     {
         private float rCenter;
