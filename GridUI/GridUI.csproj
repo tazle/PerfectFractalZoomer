@@ -106,6 +106,7 @@
     <Compile Include="DataModel\DataCommon.cs" />
     <Compile Include="DataModel\DataGroup.cs" />
     <Compile Include="DataModel\DataItem.cs" />
+    <Compile Include="DataModel\Drawers\TrajectoryMandelbrotDrawer.cs" />
     <Compile Include="DataModel\Drawers\LineDrawer.cs" />
     <Compile Include="DataModel\Drawers\PixelDrawer.cs" />
     <Compile Include="DataModel\Drawers\StaticMandelbrotDrawer.cs" />

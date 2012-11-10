@@ -13,6 +13,7 @@ using GridUI.DataModel.Drawers;
 // Colors
 using SharpDX;
 
+using PerfectFractalZoomer.Fractal.MandelbrotLib;
 
 // The data model defined by this file serves as a representative example of a strongly-typed
 // model that supports notification when members are added, removed, or modified.  The property
@@ -121,6 +122,13 @@ namespace GridUI.DataModel
         -1.5f,
         0.2f,
         0.5f,
+        128,
+        fractals));
+            fractals.Items.Add(new TrajectoryMandelbrotDrawer("Dynamic Mandelbrot",
+        "Item Title: Static Mandelbrot",
+        "Assets/LightGray.png",
+        Color.White,
+        new DynamicTrajectory(new StaticTrajectory(-1.3f, 0.1f, 0.5f), (Trajectory a) => new StaticTrajectory(a.getRCenter(), a.getICenter(), a.getWidth() *0.99f)),
         128,
         fractals));
 
