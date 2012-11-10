@@ -72,7 +72,7 @@ namespace GridUI
 
             DeviceManager deviceManager = new DeviceManager();
 
-            d2dTarget = new SurfaceImageSourceTarget(100, 100);
+            d2dTarget = new SurfaceImageSourceTarget((int)d2dContainer.Width, (int)d2dContainer.Height);
             d2dBrush.ImageSource = d2dTarget.ImageSource;
             d2dTarget.OnRender += item.drawContent;
 

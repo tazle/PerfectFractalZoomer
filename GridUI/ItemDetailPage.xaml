@@ -41,8 +41,8 @@
         </Grid>
 
 
-        <Grid Name="ViewPortContainer" Width="1000" Height="500">
-            <Rectangle x:Name="d2dRectangle" Height="1000" Canvas.Left="100" Stroke="Black" Canvas.Top="100" Width="500"/>
+        <Grid Name="d2dContainer" Width="1000" Height="500">
+            <Rectangle x:Name="d2dRectangle" Width="1000" Height="500" Stroke="Black" />
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
