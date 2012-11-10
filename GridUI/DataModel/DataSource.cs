@@ -65,6 +65,68 @@ namespace GridUI.DataModel
 
         public DataSource()
         {
+
+            
+            var fractals = new DataGroup("Mandelbrot-Group",
+                    "Mandelbrots",
+                    "Assets/DarkGray.png",
+                    "Group Description: Fractals!");
+            fractals.Items.Add(new StaticMandelbrotDrawer("StaticMandelbrot1",
+                    "Full Mandelbrot",
+                    "Assets/LightGray.png",
+                    Color.White,
+                    -.875f,
+                    0f,
+                    3f,
+                    64,
+                    fractals));
+            fractals.Items.Add(new StaticMandelbrotDrawer("StaticMandelbrot2",
+                    "Mandelbrot detail",
+                    "Assets/LightGray.png",
+                    Color.White,
+                    -1.0f,
+                    0.2f,
+                    0.5f,
+                    128,
+                    fractals));
+            fractals.Items.Add(new TrajectoryMandelbrotDrawer("DynamicMandelbrot1",
+                    "Mandelbot zoomer 1",
+                    "Assets/LightGray.png",
+                    Color.White,
+                    new DynamicTrajectory(new StaticTrajectory(0.3750001200618655f, -0.2166393884377127f, 5f), (Trajectory a) => new StaticTrajectory(a.getRCenter(), a.getICenter(), a.getWidth() * 0.99f)),
+                    128,
+                    fractals));
+            fractals.Items.Add(new TrajectoryMandelbrotDrawer("DynamicMandelbrot2",
+                    "Mandel zoomer 2",
+                    "Assets/LightGray.png",
+                    Color.White,
+                    new DynamicTrajectory(new StaticTrajectory(-0.13856524454488f, -0.64935990748190f, 5f), (Trajectory a) => new StaticTrajectory(a.getRCenter(), a.getICenter(), a.getWidth() * 0.99f)),
+                    128,
+                    fractals));
+            fractals.Items.Add(new TrajectoryMandelbrotDrawer("DynamicMandelbrot3",
+                    "Mandel zoomer 3",
+                    "Assets/LightGray.png",
+                    Color.White,
+                    new DynamicTrajectory(new StaticTrajectory(0.435396403f, 0.367981352f, 5f), (Trajectory a) => new StaticTrajectory(a.getRCenter(), a.getICenter(), a.getWidth() * 0.99f)),
+                    128,
+                    fractals));
+            fractals.Items.Add(new TrajectoryMandelbrotDrawer("DynamicMandelbrot4",
+                    "Mandel zoomer 4",
+                    "Assets/LightGray.png",
+                    Color.White,
+                    new DynamicTrajectory(new StaticTrajectory(-0.567709792f, 0.638956191f, 5f), (Trajectory a) => new StaticTrajectory(a.getRCenter(), a.getICenter(), a.getWidth() * 0.99f)),
+                    128,
+                    fractals));
+            fractals.Items.Add(new TrajectoryMandelbrotDrawer("DynamicMandelbrot5",
+                    "Mandel zoomer 5",
+                    "Assets/LightGray.png",
+                    Color.White,
+                    new DynamicTrajectory(new StaticTrajectory(-0.37465401f, 0.659227668f, 5f), (Trajectory a) => new StaticTrajectory(a.getRCenter(), a.getICenter(), a.getWidth() * 0.99f)),
+                    128,
+                    fractals));
+
+            this.AllGroups.Add(fractals);
+
             var group1 = new DataGroup("Group-1",
                     "Pixel art",
                     "Assets/DarkGray.png",
@@ -101,38 +163,6 @@ namespace GridUI.DataModel
                     Color.Red,
                     group2));
             this.AllGroups.Add(group2);
-
-            var fractals = new DataGroup("Fractals",
-        "Fractals",
-        "Assets/DarkGray.png",
-        "Group Description: Fractals!");
-            fractals.Items.Add(new StaticMandelbrotDrawer("Static Mandelbrot",
-                    "Static Mandelbrot",
-                    "Assets/LightGray.png",
-                    Color.White,
-                    -.875f,
-                    0f,
-                    3f,
-                    16,
-                    fractals));
-            fractals.Items.Add(new StaticMandelbrotDrawer("Static Mandelbrot 2",
-        "Static Mandelbrot",
-        "Assets/LightGray.png",
-        Color.White,
-        -1.5f,
-        0.2f,
-        0.5f,
-        128,
-        fractals));
-            fractals.Items.Add(new TrajectoryMandelbrotDrawer("Dynamic Mandelbrot",
-        "Item Title: Static Mandelbrot",
-        "Assets/LightGray.png",
-        Color.White,
-        new DynamicTrajectory(new StaticTrajectory(-1.3f, 0.1f, 0.5f), (Trajectory a) => new StaticTrajectory(a.getRCenter(), a.getICenter(), a.getWidth() *0.99f)),
-        128,
-        fractals));
-
-            this.AllGroups.Add(fractals);
         }
     }
 }

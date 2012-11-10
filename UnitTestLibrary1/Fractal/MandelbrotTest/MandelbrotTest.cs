@@ -14,7 +14,7 @@ namespace PerfectFractalZoomer.Fractal.MandelbrotTest
         public void TestSimple()
         {
             Mandelbrot m = new BasicMandelbrot(64);
-            MandelbrotView view = new StaticMandelbrotView(m, 0, 0, 4, 640, 480);
+            MandelbrotView view = new TrajectoryMandelbrotView(m, new StaticTrajectory(0, 0, 4), 640, 480);
             Assert.AreEqual(1.0f, view.pixelAt(320, 240));
             Assert.AreEqual(0.0f, view.pixelAt(0, 0));
             Assert.AreEqual(0.0f, view.pixelAt(640, 480));
