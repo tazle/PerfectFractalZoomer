@@ -1,39 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-
-  <Identity Name="c0ecc762-2c08-4c7d-ac4b-08d80e628101"
-            Publisher="CN=Axel"
-            Version="1.0.0.0" />
-
+  <Identity Name="c0ecc762-2c08-4c7d-ac4b-08d80e628101" Publisher="CN=Axel" Version="1.0.0.0" />
   <Properties>
     <DisplayName>GridUI</DisplayName>
     <PublisherDisplayName>Axel</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
-
   <Prerequisites>
     <OSMinVersion>6.2.1</OSMinVersion>
     <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
   </Prerequisites>
-
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-        Executable="$targetnametoken$.exe"
-        EntryPoint="GridUI.App">
-        <VisualElements
-            DisplayName="GridUI"
-            Logo="Assets\Logo.png"
-            SmallLogo="Assets\SmallLogo.png"
-            Description="GridUI"
-            ForegroundText="light"
-            BackgroundColor="#464646">
-            <DefaultTile ShowName="allLogos" />
-            <SplashScreen Image="Assets\SplashScreen.png" />
-        </VisualElements>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="GridUI.App">
+      <VisualElements DisplayName="Perfect Fractal Zoomer" Logo="Assets\logo.png" SmallLogo="Assets\small.png" Description="A fractal zoomer, that is perfect." ForegroundText="light" BackgroundColor="#464646" ToastCapable="false">
+        <DefaultTile ShowName="allLogos" WideLogo="Assets\wide.png" />
+        <SplashScreen Image="Assets\splash.png" />
+        <InitialRotationPreference>
+          <Rotation Preference="portrait" />
+          <Rotation Preference="landscape" />
+          <Rotation Preference="portraitFlipped" />
+          <Rotation Preference="landscapeFlipped" />
+        </InitialRotationPreference>
+      </VisualElements>
     </Application>
   </Applications>
   <Capabilities>
