@@ -13,7 +13,7 @@ namespace GridUI.DataModel.Drawers
 {
     class PixelDrawer : DataItem
     {
-        private Color color = new Color(255);
+        private Color color = Color.White;
         Random random = new Random();
 
         public PixelDrawer(String uniqueId, String title, String imagePath, Color color, DataGroup group)

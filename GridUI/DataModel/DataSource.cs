@@ -77,7 +77,7 @@ namespace GridUI.DataModel
             group1.Items.Add(new PixelDrawer("Group-1-Item-2",
                     "Blue pixels",
                     "Assets/LightGray.png",
-                    Color.White,
+                    Color.Blue,
                     group1));
             this.AllGroups.Add(group1);
 
@@ -93,12 +93,12 @@ namespace GridUI.DataModel
             group2.Items.Add(new LineDrawer("Group-2-Item-2",
                     "Blue lines",
                     "Assets/LightGray.png",
-                    Color.White,
+                    Color.Blue,
                     group2));
             group2.Items.Add(new LineDrawer("Group-2-Item-3",
                     "Red lines",
                     "Assets/LightGray.png",
-                    Color.White,
+                    Color.Red,
                     group2));
             this.AllGroups.Add(group2);
 

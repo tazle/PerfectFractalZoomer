@@ -8,12 +8,9 @@ using System.Threading.Tasks;
 using SharpDX.Direct2D1;
 using CommonDX;
 using SharpDX;
+using SharpDX.DXGI;
 
 using PerfectFractalZoomer.Fractal.MandelbrotLib;
-
-using SharpDX;
-using SharpDX.Direct2D1;
-using SharpDX.DXGI;
 
 namespace GridUI.DataModel.Drawers
 {
