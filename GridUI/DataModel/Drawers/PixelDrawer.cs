@@ -14,6 +14,7 @@ namespace GridUI.DataModel.Drawers
     class PixelDrawer : DataItem
     {
         private Color color = new Color(255);
+        Random random = new Random();
 
         public PixelDrawer(String uniqueId, String title, String imagePath, Color color, DataGroup group)
             : base(uniqueId, title, imagePath, group)
@@ -23,25 +24,20 @@ namespace GridUI.DataModel.Drawers
 
         public override void drawContent(TargetBase target)
         {
-            // Add something http://writeablebitmapex.codeplex.com
-            //   # #
-            //   # #
-            // #     #
-            //  #####
-            /*context.DrawLine(new );
-            bmp.SetPixel(10, 12, color);
-            bmp.SetPixel(11, 12, color);
+            DeviceContext context = target.DeviceManager.ContextDirect2D;
+            Brush pixelBrush = new SolidColorBrush(context, color);
+            Brush dimmingBrush = new SolidColorBrush(context, new Color(0,0,0,10));
 
-            bmp.SetPixel(10, 14, color);
-            bmp.SetPixel(11, 14, color);
+            int x = random.Next(0, context.PixelSize.Width);
+            int y = random.Next(0, context.PixelSize.Height);
 
-            bmp.SetPixel(12, 10, color);
-            bmp.SetPixel(12, 16, color);
-            bmp.SetPixel(13, 11, color);
-            bmp.SetPixel(13, 12, color);
-            bmp.SetPixel(13, 13, color);
-            bmp.SetPixel(13, 14, color);
-            bmp.SetPixel(13, 15, color);*/
+            context.BeginDraw();
+
+            // Dim
+            context.FillRectangle(new RectangleF(0, 0, context.PixelSize.Width, context.PixelSize.Width), dimmingBrush);
+            context.FillRectangle(new RectangleF(x,y,x+2,y+2), pixelBrush);
+
+            context.EndDraw();
         }
     }
 }
