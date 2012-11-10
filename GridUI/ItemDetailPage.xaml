@@ -42,8 +42,7 @@
 
 
         <Grid Name="ViewPortContainer" Width="1000" Height="500">
-            <Rectangle Stroke="Black" />
-            <Image Name="ImageViewport" Stretch="None" />
+            <Rectangle x:Name="d2dRectangle" Height="1000" Canvas.Left="100" Stroke="Black" Canvas.Top="100" Width="500"/>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 // Bitmap
-using Windows.UI.Xaml.Media.Imaging;
-// Colors
-using Windows.UI;
+using SharpDX;
+using CommonDX;
 
 
 namespace GridUI.DataModel
@@ -37,6 +36,6 @@ namespace GridUI.DataModel
             set { this.SetProperty(ref this._group, value); }
         }
 
-        public abstract void drawContent(WriteableBitmap bmp);
+        public abstract void drawContent(TargetBase target);
     }
 }
