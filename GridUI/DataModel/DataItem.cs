@@ -36,6 +36,8 @@ namespace GridUI.DataModel
             set { this.SetProperty(ref this._group, value); }
         }
 
+        public virtual void initContent(SurfaceImageSourceTarget target, DrawingSize pixelSize) { }
+        public virtual void destroyContent() {}
         public abstract void drawContent(TargetBase target);
     }
 }

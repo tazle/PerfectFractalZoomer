@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -106,6 +107,7 @@
     <Compile Include="DataModel\DataCommon.cs" />
     <Compile Include="DataModel\DataGroup.cs" />
     <Compile Include="DataModel\DataItem.cs" />
+    <Compile Include="DataModel\Drawers\CommonMandelbrotDrawer.cs" />
     <Compile Include="DataModel\Drawers\TrajectoryMandelbrotDrawer.cs" />
     <Compile Include="DataModel\Drawers\LineDrawer.cs" />
     <Compile Include="DataModel\Drawers\PixelDrawer.cs" />

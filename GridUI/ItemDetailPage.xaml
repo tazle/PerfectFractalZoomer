@@ -30,6 +30,16 @@
         DataContext="{Binding Group}"
         d:DataContext="{Binding AllGroups[0], Source={d:DesignInstance Type=data:DataSource, IsDesignTimeCreatable=True}}">
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Name="d2dContainer" Margin="10"
+            Grid.RowSpan="2">
+            <Rectangle x:Name="d2dRectangle" Stroke="Black" />
+        </Grid>
+
         <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>
@@ -38,11 +48,6 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Text="{Binding Title}" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
-        </Grid>
-
-
-        <Grid Name="d2dContainer" Width="1000" Height="500">
-            <Rectangle x:Name="d2dRectangle" Width="1000" Height="500" Stroke="Black" />
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

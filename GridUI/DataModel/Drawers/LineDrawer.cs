@@ -16,7 +16,10 @@ namespace GridUI.DataModel.Drawers
     class LineDrawer : DataItem
     {
         private Color color = Color.White;
-        Random random = new Random();
+        private Random random = new Random();
+        private DeviceContext context;
+        private Brush lineBrush;
+        private Brush dimmingBrush;
 
         public LineDrawer(String uniqueId, String title, String imagePath, Color color, DataGroup group)
             : base(uniqueId, title, imagePath, group)
@@ -24,11 +27,15 @@ namespace GridUI.DataModel.Drawers
             this.color = color;
         }
 
+        public override void initContent(SurfaceImageSourceTarget target, DrawingSize pixelSize)
+        {
+            context = target.DeviceManager.ContextDirect2D;
+            lineBrush = new SolidColorBrush(context, color);
+            dimmingBrush = new SolidColorBrush(context, new Color(0, 0, 0, 10));
+        }
+
         public override void drawContent(TargetBase target)
         {
-            DeviceContext context = target.DeviceManager.ContextDirect2D;
-            Brush lineBrush = new SolidColorBrush(context, color);
-            Brush dimmingBrush = new SolidColorBrush(context, new Color(0, 0, 0, 10));
 
             int y = random.Next(0, context.PixelSize.Height);
 
@@ -36,7 +43,6 @@ namespace GridUI.DataModel.Drawers
 
             // Dim
             context.FillRectangle(new RectangleF(0, 0, context.PixelSize.Width, context.PixelSize.Width), dimmingBrush);
-
             context.DrawLine(new DrawingPointF(0, y), new DrawingPointF(context.PixelSize.Width, y), lineBrush);
 
             context.EndDraw();

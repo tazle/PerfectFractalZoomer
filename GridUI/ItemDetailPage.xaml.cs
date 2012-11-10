@@ -88,12 +88,16 @@ namespace GridUI
 
             DeviceManager deviceManager = new DeviceManager();
 
-            d2dTarget = new SurfaceImageSourceTarget((int)d2dContainer.Width, (int)d2dContainer.Height);
-            d2dTarget.OnRender += item.drawContent;
+            DrawingSize size = new DrawingSize((int)d2dContainer.ActualWidth, (int)d2dContainer.ActualHeight);
+
+            d2dTarget = new SurfaceImageSourceTarget(size.Width, size.Height);
             d2dBrush.ImageSource = d2dTarget.ImageSource;
 
             deviceManager.OnInitialize += d2dTarget.Initialize;
             deviceManager.Initialize(DisplayProperties.LogicalDpi);
+
+            d2dTarget.OnRender += item.drawContent;
+            item.initContent(d2dTarget, size);
 
             CompositionTarget.Rendering += CompositionTarget_Rendering;
         }
@@ -101,6 +105,7 @@ namespace GridUI
         private void unload(Object sender, RoutedEventArgs e)
         {
             d2dTarget.Dispose();
+            item.destroyContent();
             CompositionTarget.Rendering -= CompositionTarget_Rendering;
         }
 
