@@ -66,48 +66,48 @@ namespace GridUI.DataModel
         public DataSource()
         {
             var group1 = new DataGroup("Group-1",
-                    "Group Title: Pxiel art",
+                    "Pixel art",
                     "Assets/DarkGray.png",
                     "Group Description: Pixel drawn figurines");
             group1.Items.Add(new PixelDrawer("Group-1-Item-1",
-                    "Item Title: White pixels",
+                    "White pixels",
                     "Assets/LightGray.png",
                     Color.White,
                     group1));
             group1.Items.Add(new PixelDrawer("Group-1-Item-2",
-                    "Item Title: Blue pixels",
+                    "Blue pixels",
                     "Assets/LightGray.png",
                     Color.White,
                     group1));
             this.AllGroups.Add(group1);
 
             var group2 = new DataGroup("Group-2",
-                    "Group Title: Line art",
+                    "Line art",
                     "Assets/DarkGray.png",
                     "Group Description: Line drawn figurines");
             group2.Items.Add(new LineDrawer("Group-2-Item-1",
-                    "Item Title: White lines",
+                    "White lines",
                     "Assets/LightGray.png",
                     Color.White,
                     group2));
             group2.Items.Add(new LineDrawer("Group-2-Item-2",
-                    "Item Title: Blue lines",
+                    "Blue lines",
                     "Assets/LightGray.png",
                     Color.White,
                     group2));
             group2.Items.Add(new LineDrawer("Group-2-Item-3",
-                    "Item Title: Red lines",
+                    "Red lines",
                     "Assets/LightGray.png",
                     Color.White,
                     group2));
             this.AllGroups.Add(group2);
 
             var fractals = new DataGroup("Fractals",
-        "Group Title: Fractals",
+        "Fractals",
         "Assets/DarkGray.png",
         "Group Description: Fractals!");
             fractals.Items.Add(new StaticMandelbrotDrawer("Static Mandelbrot",
-                    "Item Title: Static Mandelbrot",
+                    "Static Mandelbrot",
                     "Assets/LightGray.png",
                     Color.White,
                     -.875f,
@@ -116,7 +116,7 @@ namespace GridUI.DataModel
                     16,
                     fractals));
             fractals.Items.Add(new StaticMandelbrotDrawer("Static Mandelbrot 2",
-        "Item Title: Static Mandelbrot",
+        "Static Mandelbrot",
         "Assets/LightGray.png",
         Color.White,
         -1.5f,

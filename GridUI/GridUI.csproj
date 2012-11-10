@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GridUI</RootNamespace>
     <AssemblyName>GridUI</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <DefaultLanguage>en</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>GridUI_TemporaryKey.pfx</PackageCertificateKeyFile>
@@ -137,13 +137,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Logo.png" />
-    <Content Include="Assets\SmallLogo.png" />
-    <Content Include="Assets\SplashScreen.png" />
-    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\badge.png" />
     <Content Include="Assets\LightGray.png" />
+    <Content Include="Assets\logo.png" />
     <Content Include="Assets\MediumGray.png" />
     <Content Include="Assets\DarkGray.png" />
+    <Content Include="Assets\small.png" />
+    <Content Include="Assets\splash.png" />
+    <Content Include="Assets\wide.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -176,9 +177,6 @@
     </Reference>
     <Reference Include="SharpDX.DXGI">
       <HintPath>..\packages\SharpDX.DXGI.2.4.0\lib\netcore45\SharpDX.DXGI.dll</HintPath>
-    </Reference>
-    <Reference Include="WriteableBitmapEx.WinRT">
-      <HintPath>..\packages\WriteableBitmapEx.1.0.5.0\lib\NetCore45\WriteableBitmapEx.WinRT.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
